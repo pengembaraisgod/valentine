@@ -161,9 +161,8 @@ document.addEventListener("click",(e)=>{
         yesBtn.classList.add("glow");
     }
 });
-
 /* =====================
-   😈 SMOOTH ESCAPE (±4cm)
+   😈 BRUTAL ESCAPE (±6cm)
 ===================== */
 
 document.addEventListener("mousemove",(e)=>{
@@ -177,22 +176,28 @@ document.addEventListener("mousemove",(e)=>{
 
     const distance = Math.hypot(dx,dy);
 
-    const triggerDistance = 150; // ≈ 4cm layar
+    const triggerDistance = 220; // ≈ 6cm layar
 
     if(distance < triggerDistance){
 
-        const moveDistance = 60; // tidak terlalu jauh
+        const moveDistance = 120; // lebih jauh & brutal
 
+        // arah menjauh dari kursor
         const moveX = (dx/distance) * moveDistance;
         const moveY = (dy/distance) * moveDistance;
 
+        noBtn.style.transition = "0.08s";
         noBtn.style.transform =
-            `translate(${moveX}px, ${moveY}px) rotate(${Math.random()*20-10}deg)`;
+            `translate(${moveX}px, ${moveY}px)
+             rotate(${Math.random()*40-20}deg)
+             scale(1.1)`;
+
     } else {
-        noBtn.style.transform = "translate(0,0)";
+        noBtn.style.transform = "translate(0,0) rotate(0deg) scale(1)";
     }
 
 });
+
 
 /* =====================
    🎉 PARTY MODE
@@ -234,3 +239,4 @@ function party(){
 
 </body>
 </html>
+
