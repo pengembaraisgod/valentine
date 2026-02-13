@@ -162,7 +162,7 @@ document.addEventListener("click",(e)=>{
     }
 });
 /* =====================
-   😈 BRUTAL ESCAPE (±6cm)
+   😈 BRUTAL ESCAPE FULL AREA
 ===================== */
 
 document.addEventListener("mousemove",(e)=>{
@@ -176,24 +176,25 @@ document.addEventListener("mousemove",(e)=>{
 
     const distance = Math.hypot(dx,dy);
 
-    const triggerDistance = 220; // ≈ 6cm layar
+    const triggerDistance = 220; // ±6cm
 
     if(distance < triggerDistance){
 
-        const moveDistance = 120; // lebih jauh & brutal
+        // ukuran layar
+        const maxX = window.innerWidth - noBtn.offsetWidth;
+        const maxY = window.innerHeight - noBtn.offsetHeight;
 
-        // arah menjauh dari kursor
-        const moveX = (dx/distance) * moveDistance;
-        const moveY = (dy/distance) * moveDistance;
+        // lompat random ke seluruh layar
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
 
-        noBtn.style.transition = "0.08s";
+        noBtn.style.position = "fixed";
+        noBtn.style.left = randomX + "px";
+        noBtn.style.top = randomY + "px";
+
+        noBtn.style.transition = "0.1s";
         noBtn.style.transform =
-            `translate(${moveX}px, ${moveY}px)
-             rotate(${Math.random()*40-20}deg)
-             scale(1.1)`;
-
-    } else {
-        noBtn.style.transform = "translate(0,0) rotate(0deg) scale(1)";
+            `rotate(${Math.random()*60-30}deg) scale(1.15)`;
     }
 
 });
@@ -239,4 +240,5 @@ function party(){
 
 </body>
 </html>
+
 
